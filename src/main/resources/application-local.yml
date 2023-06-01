@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name:
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/master_1?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: qwe@ASD123
+          driver-class-name: com.mysql.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+          minPoolSize: 20
+          maxPoolSize: 200
+          initialPoolSize: 20
+          acquireIncrement: 10
+          maxWait: 60000
+        slave_1:
+          url: jdbc:mysql://127.0.0.1:3306/master_2?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: qwe@ASD123
+          driver-class-name: com.mysql.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+          minPoolSize: 20
+          maxPoolSize: 200
+          initialPoolSize: 20
+          acquireIncrement: 10
+          maxWait: 60000
+
+
+# 日志打印
+logging:
+  level:
+    root: debug
+
+# open api文档
+springdoc:
+  packages-to-scan: com.example.multipledatasource.controller
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
